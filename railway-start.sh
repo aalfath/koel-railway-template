@@ -19,6 +19,15 @@ if [ -z "$APP_KEY" ]; then
   exit 1
 fi
 
+# mod_php needs the prefork MPM only. On Railway the base image's disabled mpm_event link can
+# reappear ("AH00534: More than one MPM loaded"), so enforce prefork on every start.
+for m in mpm_event mpm_worker; do
+  rm -f "/etc/apache2/mods-enabled/$m.load" "/etc/apache2/mods-enabled/$m.conf"
+done
+for f in load conf; do
+  [ -e "/etc/apache2/mods-enabled/mpm_prefork.$f" ] || ln -s "../mods-available/mpm_prefork.$f" "/etc/apache2/mods-enabled/mpm_prefork.$f"
+done
+
 # Apache listens on Railway's PORT.
 sed -i "s/^Listen .*/Listen ${PORT}/" /etc/apache2/ports.conf
 sed -i "s/<VirtualHost \*:[0-9]*>/<VirtualHost *:${PORT}>/" /etc/apache2/sites-available/000-default.conf

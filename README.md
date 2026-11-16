@@ -10,7 +10,7 @@ A one-click Railway template for [Koel](https://koel.dev), the self-hosted perso
 
 The official image is used as is. The start script ([`railway-start.sh`](railway-start.sh)):
 
-- makes Apache listen on Railway's `PORT` and keeps every data directory on the `/data` volume;
+- makes Apache listen on Railway's `PORT`, keeps only the prefork MPM enabled (Railway's build can bring back the base image's disabled `mpm_event`), and keeps every data directory on the `/data` volume;
 - runs Koel's own installer (`koel:init`: migrations, first admin, media path, scheduler) on every start;
 - replaces the upstream default admin password (`KoelIsCool`) with `KOEL_ADMIN_PASSWORD` **before** the web server starts ([`railway-admin.php`](railway-admin.php)). It only does this while the default password is still in use, so a password you change later in Koel is never overwritten;
 - sets fixed production settings: `APP_DEBUG=false`, `FORCE_HTTPS=true`, `TRUSTED_PROXIES=*`, `DB_CONNECTION=pgsql`, logs to stderr;
