@@ -2,6 +2,10 @@
 
 Breaking changes are listed first in each entry. Read the entry before you apply an update on Railway.
 
+## 9.15.0-1 (2026-11-16)
+
+- README: add the Deploy on Railway button for the published template `koel-1`. No change to the deployed app.
+
 ## 9.15.0 (2026-11-16)
 
 - First release of the Railway template: Koel 9.15.0 (`phanan/koel:9.15.0@sha256:af1ec7daf06d22f6781d9e79716e52048108c21b05adfebccec2e474a29f6fde`) with Railway's Postgres.
