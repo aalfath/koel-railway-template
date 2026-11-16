@@ -1,7 +1,10 @@
 # Koel on Railway
 
+[![Deploy on Railway](https://railway.com/button.svg)](https://railway.com/new/template/koel-1?utm_medium=integration&utm_source=button&utm_campaign=koel)
+
 A one-click Railway template for [Koel](https://koel.dev), the self-hosted personal music streaming server (web player, playlists, podcasts, Subsonic-compatible API).
 
+- **Template:** [railway.com/deploy/koel-1](https://railway.com/deploy/koel-1)
 - **Koel version:** 9.15.0, from the official image `phanan/koel:9.15.0`, pinned by digest in the [`Dockerfile`](Dockerfile).
 - **Services:** `Koel` (built from this repo) and Railway's own `Postgres`.
 - **Storage:** one volume on Koel at `/data` holding your music (`/data/music`), artwork (`/data/images`) and the search index (`/data/search-indexes`). The database holds users, playlists and library metadata.
